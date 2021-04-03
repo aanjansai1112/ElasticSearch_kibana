@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+data:
+  # kibana.yml is mounted into the Kibana container
+  # see https://github.com/elastic/kibana/blob/master/config/kibana.yml
+  # Kubernetes Ingress is used to route kib.the-project.d4ldev.txn2.com
+  kibana.yml: |-
+    server.name: kibana
+    server.host: "0"
+    xpack.reporting.enabled: false
+    elasticsearch.hosts: http://localhost:80 # or https://elastic.elk.com/ <Domain>
